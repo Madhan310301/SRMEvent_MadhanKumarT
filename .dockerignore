@@ -1,0 +1,10 @@
+node_modules
+dist
+.git
+.github
+.gemini
+.next
+.cache
+coverage
+*.log
+.env.local
