@@ -2,15 +2,16 @@
 ### SRM PromptWars 2026 | UN Sustainable Development Goal 8: Decent Work & Economic Growth
 **Author:** Madhan Kumar T  
 **Repository:** [Madhan310301/SRMEvent_MadhanKumarT](https://github.com/Madhan310301/SRMEvent_MadhanKumarT)  
-**Demo URL:** `http://localhost:5173/` (Localhost)  
+**Demo URL (Local):** [http://localhost:5173/](http://localhost:5173/)  
+**Vercel Configuration:** Pre-configured via `vercel.json` (Vite SPA preset)  
 
 ---
 
 ## 📌 Executive Summary
 
-**FairShift** is a comprehensive, multilingual, offline-first workforce fairness and workplace safety platform engineered specifically for labor-intensive and multi-tier organizations. Built in direct alignment with **United Nations Sustainable Development Goal 8 (Decent Work and Economic Growth)**, FairShift bridges the transparency gap between frontline workers, contractors, site supervisors, and enterprise owners.
+**FairShift** is a comprehensive, multilingual, offline-first workforce fairness and workplace safety platform engineered specifically for labor-intensive, multi-tiered organizations. Built in direct alignment with **United Nations Sustainable Development Goal 8 (Decent Work and Economic Growth)**, FairShift bridges the structural transparency gap between frontline employees, contractors, site supervisors, and enterprise owners.
 
-The platform directly serves two major sectors:
+The platform natively supports two pilot industries:
 1. **Mega-Construction Projects** (e.g., Kaveri Infrastructure & Metro Rail Site 4)
 2. **Colleges & Higher Education Institutions** (e.g., SRM Institute of Science & Technology Campus Facilities)
 
@@ -18,67 +19,140 @@ FairShift combines **Grovemade-inspired editorial aesthetics** (warm off-white c
 
 ---
 
-## 🚀 Quick Start Guide
+## 🏗️ System Architecture
 
-### 1. Prerequisites
-- **Node.js**: v18.0.0 or higher
-- **pnpm**: v9+ (or `npm`)
+```mermaid
+graph TD
+    subgraph Frontend ["Client Experience Layer (React 18 + Vite)"]
+        UI["Editorial Design System (#FAFAF8 Warm Canvas)"]
+        Orb["MorphOrb Particle Assistant (Fibonacci 3D Canvas)"]
+        Speech["Web Speech API (Low-Literacy Audio TTS)"]
+        Media["MediaRecorder API (Voice Hazard Reporting)"]
+        QR["QR Generator & Scanner (Attendance & Passports)"]
+    end
 
-### 2. Local Setup & Execution
+    subgraph Personas ["Multi-Tier Roles"]
+        Owner["Enterprise Owner / Chancellor"]
+        Employer["Site Lead / Campus Director"]
+        Worker["Crane Operator / Sanitation Lead"]
+    end
+
+    subgraph DataSync ["Resilient Data Pipeline"]
+        Dexie["Dexie.js (Client IndexedDB Cache)"]
+        Outbox["Offline Outbox Sync Engine"]
+        SupaClient["Supabase Client & RLS Policies"]
+    end
+
+    Personas --> UI
+    UI --> Orb
+    UI --> Speech
+    UI --> Media
+    UI --> QR
+    UI --> Dexie
+    Dexie --> Outbox
+    Outbox --> SupaClient
+```
+
+---
+
+## 🚀 Quick Start & Deployment Guide
+
+### Option A: Local Development
 ```bash
-# Clone the repository
+# 1. Clone the repository
 git clone https://github.com/Madhan310301/SRMEvent_MadhanKumarT.git
 cd SRMEvent_MadhanKumarT
 
-# Install dependencies
+# 2. Install dependencies
 pnpm install
 
-# Run unit test suite (18/18 automated tests passing)
+# 3. Run automated test suite (18/18 passing)
 pnpm test
 
-# Build for production
+# 4. Build for production (TypeScript + Vite)
 pnpm run build
 
-# Start the high-performance development server
+# 5. Start development server
 pnpm dev --host
 ```
-
-Open your browser to:
-👉 **`http://localhost:5173/`**
+Open your browser to: **`http://localhost:5173/`**
 
 ---
 
-## 👥 The 6-Persona Evaluation Suite
-
-FairShift features a **one-click Persona Switcher** embedded directly in the top header. You can seamlessly evaluate the platform from every vantage point without manually logging out or managing passwords:
-
-### 🏗️ Sector A: Mega-Construction (Kaveri Infrastructure)
-| Persona | Name | Role | Primary Features to Test |
-| :--- | :--- | :--- | :--- |
-| **Owner** | **Rajesh Kaveri** | Managing Director & Enterprise Owner | Executive ESG dashboard, compliance overview, wage escrow verification, multi-site workforce audit. |
-| **Employer** | **Ramesh Sundaram** | Head Safety Officer & Site Director | Daily shift attendance, overtime calculation approval, safety hazard triage, MorphOrb natural-language worker search. |
-| **Employee** | **Murugan K.** | Senior Tower Crane Operator | QR Shift Clock-In, itemized payslip with **Audio TTS**, photo/voice hazard reporting, portable Skill Passport. |
-
-### 🎓 Sector B: Higher Education Campus (SRM Institute of Science & Technology)
-| Persona | Name | Role | Primary Features to Test |
-| :--- | :--- | :--- | :--- |
-| **Owner** | **Dr. P. Sathyanarayanan** | Pro-Chancellor & Institution Owner | Campus-wide labor standards compliance, contractor safety audits, institutional ethics score. |
-| **Employer** | **Dr. Arun Kumar** | Director of Campus Infrastructure | Facilities & sanitation scheduling, hazard mitigation lifecycle, contractor SLA verification. |
-| **Employee** | **Lakshmi S.** | Facilities & Sanitation Lead | Full **Tamil localized UI** (`ta`), biometric/QR attendance simulator, anonymous grievance token system. |
+### Option B: Deploying to Vercel
+The repository includes a root [`vercel.json`](file:///a:/Hackathons/SRM_PromptWars/vercel.json) configured specifically for Vite single-page applications:
+```json
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": "vite",
+  "buildCommand": "vite build",
+  "outputDirectory": "dist",
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
+}
+```
+1. Push to your GitHub repository or import into Vercel.
+2. In Vercel Project Settings, the **Framework Preset** will automatically resolve to **Vite** (with build command `vite build` and output directory `dist`).
+3. Deploy! All client-side React Router links (e.g., `/employer/workers`, `/worker/payslips`) will automatically resolve cleanly without 404 errors.
 
 ---
 
-## 🧭 Step-by-Step Evaluator Demo Guide
+## 👥 Access Matrix & Demo Credentials
 
-Follow these walkthrough scenarios to experience FairShift's complete feature set:
+FairShift offers two effortless ways to log in and evaluate the system:
+1. **One-Click Persona Switcher:** Located directly in the top navigation header on every page.
+2. **Direct Enterprise Login:** Located at [`/login`](file:///a:/Hackathons/SRM_PromptWars/src/components/editorial/LoginSection.tsx) with email and 4-digit PIN.
 
-### Scenario 1: Natural-Language Workforce Discovery with MorphOrb
-1. Click the top-bar persona dropdown and select **Ramesh Sundaram (Employer / Site Lead)**.
-2. Navigate to **Workforce Directory** (`/employer/workers`).
-3. Notice the **MorphOrb** assistant at the top: an interactive, 3D particle sphere rendered via pure HTML5 Canvas at 60fps (Float32Array buffer, dynamically tiered particle density for battery saving on mobile).
-4. Try typing natural language queries in the search box (or press `/` or `Ctrl+K`):
+### 🏗️ Sector 1: Mega-Construction (Kaveri Infrastructure)
+| Role | Persona Name | Title / Specialty | Email | PIN | Key Permissions |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **Owner** | **Rajesh Kaveri** | Managing Director & Enterprise Owner | `rajesh.kaveri@kaverigroups.in` | `1101` | Executive ESG dashboard, compliance overview, wage escrow verification. |
+| **Employer** | **Ramesh Sundaram** | Head Safety Officer & Site Director | `ramesh.sundaram@kaverigroups.in` | `1202` | Shift timesheets, overtime approvals, MorphOrb natural-language worker query. |
+| **Employee** | **Murugan K.** | Senior Tower Crane Operator | `murugan.k@kaverigroups.in` | `1303` | QR shift clock-in, itemized payslip with **Audio TTS**, voice hazard reports. |
+
+### 🎓 Sector 2: Higher Education Campus (SRM Institute of Science & Technology)
+| Role | Persona Name | Title / Specialty | Email | PIN | Key Permissions |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **Owner** | **Dr. P. Sathyanarayanan** | Pro-Chancellor & Institution Owner | `chancellor@srmist.edu.in` | `2101` | Institutional compliance, campus facilities oversight, contractor ethics audit. |
+| **Employer** | **Dr. Arun Kumar** | Director of Campus Infrastructure | `director.campus@srmist.edu.in` | `2202` | Campus sanitation workforce scheduling, hazard resolution, contractor SLAs. |
+| **Employee** | **Lakshmi S.** | Facilities & Sanitation Lead | `lakshmi.s@srmist.edu.in` | `2303` | Native **Tamil localized UI** (`ta`), biometric clock-in, anonymous feedback. |
+
+---
+
+## 🗺️ Complete Application Route Map
+
+| URL Path | Name | Target Persona | Core Features |
+| :--- | :--- | :--- | :--- |
+| `/` | **Editorial Landing Page** | Public / All | Grovemade aesthetic, 6-persona quick-login cards, UN SDG 8 charter, live operations ticker. |
+| `/login` | **Enterprise Sign-In** | Public | 6 quick-access persona buttons + real email/PIN credentials form + Worker Charter modal. |
+| `/worker` | **Worker Home** | Employee | Shift check-in status, today's earnings, rapid SOS trigger, fatigue warnings. |
+| `/worker/attendance` | **Attendance & QR** | Employee | Geofenced QR scan simulation, shift history, offline attendance caching. |
+| `/worker/payslips` | **Transparent Payslips** | Employee | Itemized pay breakdown, 2.0× statutory overtime, **Web Speech API Audio Player**. |
+| `/worker/hazards` | **Safety Hazard Center** | Employee | Native voice memo recording via MediaRecorder, photo upload, risk matrix triage. |
+| `/worker/feedback` | **Speak Up (Zero-PII)** | Employee | Anonymous grievance submission with cryptographically unique 12-char tracking token. |
+| `/worker/passport` | **Skill Passport** | Employee | Verifiable credentials, safety badges, portable QR history across contractors. |
+| `/employer` | **Employer Dashboard** | Employer / Owner | Live site headcounts, incident heatmaps, labor compliance score, active alerts. |
+| `/employer/workers` | **Workforce Directory** | Employer / Owner | **MorphOrb 3D Assistant**, natural language multi-lingual search, card/table toggle. |
+| `/employer/attendance`| **Shift Timesheets** | Employer | Overtime calculation verification, maximum weekly 48-hour fatigue warnings. |
+| `/employer/hazards` | **Hazard Resolution** | Employer | Incident triage queue, status transitions (Open → Investigating → Resolved). |
+| `/employer/payroll` | **Payroll Compliance** | Employer / Owner | Overtime multiplier audit (Factories Act), PF & ESI statutory deduction verification. |
+| `/employer/analytics` | **SDG 8 Analytics Radar** | Employer / Owner | Gender wage balance, excessive overtime reduction, incident resolution rate. |
+
+---
+
+## 🧭 Step-by-Step Evaluator Demo Walkthrough
+
+### Scenario 1: MorphOrb AI Workforce Assistant (`/employer/workers`)
+1. Click the persona switcher in the header and pick **Ramesh Sundaram (Employer / Site Lead)**.
+2. Go to **Workforce Directory** (`/employer/workers`).
+3. Notice the **MorphOrb** assistant at the top:
+   - An interactive 3D particle sphere rendered on HTML5 Canvas using a **Fibonacci distribution**.
+   - Backed by typed `Float32Array` buffers to ensure buttery-smooth 60fps rendering with zero garbage collection lag.
+   - Automatically throttles particle density on dual-core mobile devices (`hardwareConcurrency` check).
+4. Search via text or click the quick filter chips:
    - Type: `crane operators with overtime`
-   - Or click any of the preset quick chips: *"Overtime > 10h"*, *"Safety Certified"*, *"Night Shift"*, *"Pending Hazards"*.
+   - Or click: *"Overtime > 10h"*, *"Safety Certified"*, *"Night Shift"*.
    - Try regional terms: *`overtime > 10 மணிநேரம்`* (Tamil) or *`overtime > 10 घंटे`* (Hindi).
 5. Watch the deterministic zero-SQL engine parse your intent into verified badge filters without PII leakage, filtering the workforce table instantly. Toggle between **Table** and **Card** views.
 
