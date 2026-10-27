@@ -1,7 +1,7 @@
 export interface DemoUser {
   id: string;
   name: string;
-  role: 'worker' | 'employer';
+  role: 'owner' | 'employer' | 'worker';
   orgId: string;
   jobTitle: string;
   avatarUrl: string;
@@ -34,7 +34,7 @@ export const DEMO_ORGS: Record<string, DemoOrg> = {
   },
   'org-college': {
     id: 'org-college',
-    name: 'SRM Institute of Science & Technology (Campus Facilities)',
+    name: 'SRM Institute of Science & Technology',
     sector: 'college',
     tagline: 'Campus operations, academic buildings, residential hostels & facility maintenance',
     code: 'SRM-FAC',
@@ -47,16 +47,17 @@ export const DEMO_ORGS: Record<string, DemoOrg> = {
 };
 
 export const DEMO_USERS: Record<string, DemoUser> = {
-  'worker-construction': {
-    id: 'w-murugan-01',
-    name: 'Murugan K.',
-    role: 'worker',
+  // Construction Sector - 3 Personas (Owner, Employer, Employee)
+  'owner-construction': {
+    id: 'o-rajesh-01',
+    name: 'Rajesh Kaveri',
+    role: 'owner',
     orgId: 'org-construction',
-    jobTitle: 'Heavy Machinery & Crane Specialist',
-    avatarUrl: 'https://images.unsplash.com/photo-1544717305-2782549b5136?w=150&auto=format&fit=crop&q=80',
-    preferredLanguage: 'ta', // Tamil
-    email: 'murugan.metro@kaveri-infra.demo',
-    phone: '+91 98401 22345'
+    jobTitle: 'Managing Director & Enterprise Owner',
+    avatarUrl: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=150&auto=format&fit=crop&q=80',
+    preferredLanguage: 'en',
+    email: 'rajesh.owner@kaveri-infra.demo',
+    phone: '+91 98410 11223'
   },
   'employer-construction': {
     id: 'e-ramesh-01',
@@ -69,16 +70,29 @@ export const DEMO_USERS: Record<string, DemoUser> = {
     email: 'ramesh.director@kaveri-infra.demo',
     phone: '+91 94440 98765'
   },
-  'worker-college': {
-    id: 'w-lakshmi-02',
-    name: 'Lakshmi S.',
+  'worker-construction': {
+    id: 'w-murugan-01',
+    name: 'Murugan K.',
     role: 'worker',
+    orgId: 'org-construction',
+    jobTitle: 'Heavy Machinery & Crane Specialist',
+    avatarUrl: 'https://images.unsplash.com/photo-1544717305-2782549b5136?w=150&auto=format&fit=crop&q=80',
+    preferredLanguage: 'ta', // Tamil
+    email: 'murugan.metro@kaveri-infra.demo',
+    phone: '+91 98401 22345'
+  },
+
+  // College Sector - 3 Personas (Owner, Employer, Employee)
+  'owner-college': {
+    id: 'o-sathya-02',
+    name: 'Dr. P. Sathyanarayanan',
+    role: 'owner',
     orgId: 'org-college',
-    jobTitle: 'Senior Facilities & Housekeeping Lead',
-    avatarUrl: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=150&auto=format&fit=crop&q=80',
-    preferredLanguage: 'ta',
-    email: 'lakshmi.facilities@srm.demo',
-    phone: '+91 98840 55678'
+    jobTitle: 'Pro-Chancellor & Institution Owner',
+    avatarUrl: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&auto=format&fit=crop&q=80',
+    preferredLanguage: 'en',
+    email: 'sathya.chancellor@srm.demo',
+    phone: '+91 98400 99887'
   },
   'employer-college': {
     id: 'e-arun-02',
@@ -90,5 +104,16 @@ export const DEMO_USERS: Record<string, DemoUser> = {
     preferredLanguage: 'en',
     email: 'arun.director@srm.demo',
     phone: '+91 97890 12345'
+  },
+  'worker-college': {
+    id: 'w-lakshmi-02',
+    name: 'Lakshmi S.',
+    role: 'worker',
+    orgId: 'org-college',
+    jobTitle: 'Senior Facilities & Housekeeping Lead',
+    avatarUrl: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=150&auto=format&fit=crop&q=80',
+    preferredLanguage: 'ta',
+    email: 'lakshmi.facilities@srm.demo',
+    phone: '+91 98840 55678'
   }
 };

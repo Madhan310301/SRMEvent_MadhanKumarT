@@ -37,7 +37,7 @@ export const AppRouter: React.FC = () => {
   return (
     <BrowserRouter>
       <Routes>
-        {/* Landing Page with Employee / Employer split */}
+        {/* Landing Page with Grovemade-inspired Editorial Design & 6-Persona Access */}
         <Route path="/" element={<LandingPage />} />
 
         {/* Public Skill Verification */}
@@ -47,6 +47,7 @@ export const AppRouter: React.FC = () => {
         {/* Worker Portal Routes */}
         <Route path="/worker" element={<WorkerLayout />}>
           <Route index element={<WorkerHome />} />
+          <Route path="home" element={<Navigate to="/worker" replace />} />
           <Route path="attendance" element={<AttendanceScreen />} />
           <Route path="hours" element={<MyWorkingHoursScreen />} />
           <Route path="payslips" element={<PayslipScreen />} />
@@ -62,6 +63,7 @@ export const AppRouter: React.FC = () => {
         {/* Employer Portal Routes */}
         <Route path="/employer" element={<EmployerLayout />}>
           <Route index element={<EmployerDashboard />} />
+          <Route path="overview" element={<Navigate to="/employer" replace />} />
           <Route path="attendance" element={<EmployerAttendance />} />
           <Route path="shifts" element={<EmployerShifts />} />
           <Route path="payroll" element={<EmployerPayroll />} />

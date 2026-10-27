@@ -7,7 +7,8 @@ interface AuthContextType {
   user: DemoUser | null;
   org: DemoOrg | null;
   sectorConfig: SectorConfig;
-  activeRole: 'worker' | 'employer';
+  activeRole: 'owner' | 'employer' | 'worker';
+  isEnterpriseOwner: boolean;
   switchDemoUser: (userKey: keyof typeof DEMO_USERS) => void;
   switchSector: (sectorKey: 'construction' | 'college') => void;
   logout: () => void;
@@ -17,12 +18,12 @@ interface AuthContextType {
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  // Default to Construction Worker (Murugan K) for rich initial experience
+  // Default to Construction Worker (Murugan K)
   const [currentUserKey, setCurrentUserKey] = useState<string>(() => {
     return localStorage.getItem('fairshift_demo_user_key') || 'worker-construction';
   });
 
-  const user = DEMO_USERS[currentUserKey] || DEMO_USERS['worker-construction'];
+  const user = DEMO_USERS[currentUserKey as keyof typeof DEMO_USERS] || DEMO_USERS['worker-construction'];
   const org = DEMO_ORGS[user.orgId] || DEMO_ORGS['org-construction'];
   const sectorConfig = SECTORS[org.sector] || SECTORS.construction;
 
@@ -39,10 +40,15 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   };
 
   const switchSector = (sectorKey: 'construction' | 'college') => {
+    const role = user.role;
     if (sectorKey === 'construction') {
-      setCurrentUserKey(user.role === 'worker' ? 'worker-construction' : 'employer-construction');
+      if (role === 'owner') setCurrentUserKey('owner-construction');
+      else if (role === 'employer') setCurrentUserKey('employer-construction');
+      else setCurrentUserKey('worker-construction');
     } else {
-      setCurrentUserKey(user.role === 'worker' ? 'worker-college' : 'employer-college');
+      if (role === 'owner') setCurrentUserKey('owner-college');
+      else if (role === 'employer') setCurrentUserKey('employer-college');
+      else setCurrentUserKey('worker-college');
     }
   };
 
@@ -58,6 +64,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         org,
         sectorConfig,
         activeRole: user.role,
+        isEnterpriseOwner: user.role === 'owner',
         switchDemoUser,
         switchSector,
         logout,
