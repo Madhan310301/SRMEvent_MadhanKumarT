@@ -21,36 +21,36 @@ FairShift combines **Grovemade-inspired editorial aesthetics** (warm off-white c
 
 ## 🏗️ System Architecture
 
-```mermaid
-graph TD
-    subgraph Frontend ["Client Experience Layer (React 18 + Vite)"]
-        UI["Editorial Design System (#FAFAF8 Warm Canvas)"]
-        Orb["MorphOrb Particle Assistant (Fibonacci 3D Canvas)"]
-        Speech["Web Speech API (Low-Literacy Audio TTS)"]
-        Media["MediaRecorder API (Voice Hazard Reporting)"]
-        QR["QR Generator & Scanner (Attendance & Passports)"]
-    end
+```text
++---------------------------------------------------------------------------------------------------+
+|                                  FAIRSHIFT SYSTEM ARCHITECTURE                                    |
++---------------------------------------------------------------------------------------------------+
 
-    subgraph Personas ["Multi-Tier Roles"]
-        Owner["Enterprise Owner / Chancellor"]
-        Employer["Site Lead / Campus Director"]
-        Worker["Crane Operator / Sanitation Lead"]
-    end
-
-    subgraph DataSync ["Resilient Data Pipeline"]
-        Dexie["Dexie.js (Client IndexedDB Cache)"]
-        Outbox["Offline Outbox Sync Engine"]
-        SupaClient["Supabase Client & RLS Policies"]
-    end
-
-    Personas --> UI
-    UI --> Orb
-    UI --> Speech
-    UI --> Media
-    UI --> QR
-    UI --> Dexie
-    Dexie --> Outbox
-    Outbox --> SupaClient
+   [ MULTI-TIER PERSONAS ]
+   * Enterprise Owners (Rajesh Kaveri / Dr. P. Sathyanarayanan) -> Compliance, ESG & Wage Escrow
+   * Site Leads / Employers (Ramesh Sundaram / Dr. Arun Kumar)  -> Shift Attendance, Safety Triage
+   * Frontline Workers (Murugan K. / Lakshmi S.)               -> Smart Clock-In, Payslips, Hazards
+                                      |
+                                      v
++---------------------------------------------------------------------------------------------------+
+|                           CLIENT EXPERIENCE LAYER (React 18 + Vite SPA)                           |
++---------------------------------------------------------------------------------------------------+
+|  [ Editorial Design System ]     |  [ MorphOrb AI Assistant ]       |  [ Accessibility Engines ]  |
+|  * Warm Canvas (#FAFAF8)         |  * 60fps Fibonacci Particle      |  * Web Speech API (Audio    |
+|  * Cormorant Garamond Serifs     |    Sphere (Typed Float32Array)   |    Payslip Reader)          |
+|  * Restrained Evergreen Accent   |  * Multi-lingual Natural         |  * MediaRecorder Voice      |
+|  * 100% Vector Cards (Zero CDN)  |    Language Parser (8 Languages) |    Incident Reporting       |
++---------------------------------------------------------------------------------------------------+
+                                      |
+                                      v
++---------------------------------------------------------------------------------------------------+
+|                           OFFLINE-FIRST RESILIENCE & STORAGE PIPELINE                             |
++---------------------------------------------------------------------------------------------------+
+|  [ Dexie.js (IndexedDB) ]        |  [ Sync Outbox Queue ]           |  [ Supabase Cloud Sync ]    |
+|  * Local Shift & Hazard Caching  |  * Replays Pending Reports Upon  |  * Row-Level Security (RLS) |
+|  * Instant Sub-second Reads      |    Network Reconnection          |  * Zero-PII Whistleblower   |
+|  * Progressive Web App (PWA)     |  * Conflict-Free Replication     |    Anonymous Tracking Token |
++---------------------------------------------------------------------------------------------------+
 ```
 
 ---
